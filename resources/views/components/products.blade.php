@@ -32,7 +32,7 @@
                                 onclick="openModal('{{ asset('images/produk/' . $product . '.jpg') }}')">
                                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-end justify-content-center pb-2 pb-lg-3"
                                 style="background: rgba(0,0,0,0); transition: background 0.3s ease; pointer-events: none;">
-                                    <span class="badge bg-primary" style="font-size: 11px;">Contoh {{ $product }}</span>
+                                    <span class="badge product-badge">Contoh {{ $product }}</span>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
         width: 100%;
         aspect-ratio: 1 / 1;
         overflow: hidden;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     }
 
     .product-image-wrapper .product-image,
@@ -109,14 +109,35 @@
         transition: transform 0.3s ease;
         cursor: pointer;
     }
+
+    .product-badge {
+        background: var(--custom-btn-bg-color) !important;
+        color: var(--white-color) !important;
+        font-size: 12px;
+        padding: 6px 10px;
+        border-radius: 14px;
+        font-weight: 600;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        letter-spacing: 0.2px;
+        text-transform: none;
+        pointer-events: auto;
+    }
+
+    @media screen and (max-width: 480px) {
+        .product-badge {
+            font-size: 11px;
+            padding: 5px 8px;
+            border-radius: 12px;
+        }
+    }
     
     .pagination {
         gap: 4px;
     }
 
     .pagination .page-link {
-        border: 2px solid #667eea;
-        color: #667eea;
+        border: 2px solid var(--secondary-color);
+        color: var(--secondary-color);
         transition: all 0.3s ease;
         margin: 4px;
         padding: 10px 14px;
@@ -130,15 +151,15 @@
     }
     
     .pagination .page-item.active .page-link {
-        background-color: #667eea;
-        border-color: #667eea;
-        color: white;
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+        color: var(--white-color);
     }
     
     .pagination .page-link:hover:not(.disabled) {
-        background-color: #667eea;
-        border-color: #667eea;
-        color: white;
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+        color: var(--white-color);
     }
 
     @media screen and (max-width: 768px) {
@@ -171,7 +192,7 @@
     <div class="modal-dialog modal-fullscreen-sm-down" style="max-width: 90vw;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="productModalLabel">Gambar Produk</h5>
+                <h5 class="modal-title" id="productModalLabel">Contoh Produk</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="max-height: 85vh; overflow-y: auto; display: flex; align-items: flex-start; justify-content: center;">
