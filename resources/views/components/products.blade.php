@@ -1,5 +1,5 @@
 <!-- filepath: c:\laragon\www\FiberGlass\resources\views\components\products.blade.php -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="d-none d-md-block">
     <path fill="#3D405B" fill-opacity="1"
         d="M0,224L34.3,192C68.6,160,137,96,206,90.7C274.3,85,343,139,411,144C480,149,549,107,617,122.7C685.7,139,754,213,823,240C891.4,267,960,245,1029,224C1097.1,203,1166,181,1234,160C1302.9,139,1371,117,1406,106.7L1440,96L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z">
     </path>
@@ -23,18 +23,18 @@
                     @endphp
                     
                     @forelse(array_slice($products, $start, $perPage) as $product)
-                    <div class="col-lg-3 col-md-6 col-12 mb-4">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-3 mb-lg-4">
                         <div class="product-card h-100 overflow-hidden rounded-3 shadow-lg" 
                         style="transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
                             <div class="product-image-wrapper position-relative" 
-                                style="height: 300px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                                style="height: auto; aspect-ratio: 1; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); overflow: hidden; display: flex; align-items: center; justify-content: center;">
                                 <img src="{{ asset('images/produk/' . $product . '.jpg') }}" 
                                 class="img-fluid" alt="Produk {{ $product }}"
                                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; cursor: pointer;" 
                                 onclick="openModal('{{ asset('images/produk/' . $product . '.jpg') }}')">
-                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-end justify-content-center pb-3"
+                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-end justify-content-center pb-2 pb-lg-3"
                                 style="background: rgba(0,0,0,0); transition: background 0.3s ease; pointer-events: none;">
-                                    <span class="badge bg-primary" style="font-size: 12px;">Contoh {{ $product }}</span>
+                                    <span class="badge bg-primary" style="font-size: 11px;">Contoh {{ $product }}</span>
                                 </div>
                             </div>
                         </div>
@@ -47,10 +47,10 @@
                 </div>
 
                 <!-- Pagination -->
-                <div class="row mt-5">
-                    <div class="col-12 d-flex justify-content-center">
+                <div class="row mt-4 mt-lg-5">
+                    <div class="col-12 d-flex justify-content-center overflow-auto">
                         <nav aria-label="Page navigation">
-                            <ul class="pagination">
+                            <ul class="pagination flex-wrap">
                             @php
                                 $totalProducts = count($products);
                                 $totalPages = ceil($totalProducts / $perPage);
@@ -85,8 +85,8 @@
     }
     
     .product-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 40px rgba(0,0,0,0.15) !important;
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.15) !important;
     }
     
     .product-card:hover .product-image-wrapper img {
@@ -100,11 +100,18 @@
         justify-content: center;
     }
     
+    .pagination {
+        gap: 4px;
+    }
+
     .pagination .page-link {
         border: 2px solid #667eea;
         color: #667eea;
         transition: all 0.3s ease;
-        margin: 0 5px;
+        margin: 2px;
+        padding: 6px 10px;
+        font-size: 12px;
+        border-radius: 5px;
     }
     
     .pagination .page-item.active .page-link {
@@ -113,10 +120,30 @@
         color: white;
     }
     
-    .pagination .page-link:hover {
+    .pagination .page-link:hover:not(.disabled) {
         background-color: #667eea;
         border-color: #667eea;
         color: white;
+    }
+
+    @media screen and (max-width: 768px) {
+        .pagination .page-link {
+            padding: 5px 8px;
+            font-size: 11px;
+            margin: 1px;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .pagination .page-link {
+            padding: 4px 6px;
+            font-size: 10px;
+            margin: 1px;
+        }
+
+        .product-image-wrapper {
+            height: 150px !important;
+        }
     }
 </style>
 
