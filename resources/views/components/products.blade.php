@@ -24,13 +24,11 @@
                     
                     @forelse(array_slice($products, $start, $perPage) as $product)
                     <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-3 mb-lg-4">
-                        <div class="product-card h-100 overflow-hidden rounded-3 shadow-lg" 
-                        style="transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
-                            <div class="product-image-wrapper position-relative" 
-                                style="height: auto; aspect-ratio: 1; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                        <div class="product-card h-100 overflow-hidden rounded-3 shadow-lg" style="transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;">
+                            <div class="product-image-wrapper position-relative">
                                 <img src="{{ asset('images/produk/' . $product . '.jpg') }}" 
-                                class="img-fluid" alt="Produk {{ $product }}"
-                                style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; cursor: pointer;" 
+                                alt="Produk {{ $product }}"
+                                class="product-image" 
                                 onclick="openModal('{{ asset('images/produk/' . $product . '.jpg') }}')">
                                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-end justify-content-center pb-2 pb-lg-3"
                                 style="background: rgba(0,0,0,0); transition: background 0.3s ease; pointer-events: none;">
@@ -95,9 +93,21 @@
     
     .product-image-wrapper {
         position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .product-image-wrapper .product-image,
+    .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+        cursor: pointer;
     }
     
     .pagination {
@@ -108,10 +118,15 @@
         border: 2px solid #667eea;
         color: #667eea;
         transition: all 0.3s ease;
-        margin: 2px;
-        padding: 6px 10px;
-        font-size: 12px;
-        border-radius: 5px;
+        margin: 4px;
+        padding: 10px 14px;
+        min-width: 48px;
+        min-height: 44px;
+        font-size: 14px;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .pagination .page-item.active .page-link {
@@ -128,17 +143,21 @@
 
     @media screen and (max-width: 768px) {
         .pagination .page-link {
-            padding: 5px 8px;
-            font-size: 11px;
-            margin: 1px;
+            padding: 8px 12px;
+            font-size: 13px;
+            margin: 3px;
+            min-width: 44px;
+            min-height: 40px;
         }
     }
 
     @media screen and (max-width: 480px) {
         .pagination .page-link {
-            padding: 4px 6px;
-            font-size: 10px;
-            margin: 1px;
+            padding: 7px 10px;
+            font-size: 12px;
+            margin: 2px;
+            min-width: 44px;
+            min-height: 40px;
         }
 
         .product-image-wrapper {
